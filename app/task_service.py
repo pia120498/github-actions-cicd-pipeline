@@ -28,3 +28,18 @@ def get_tasks():
     connection.close()
 
     return tasks
+
+
+def add_task(task_name):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "INSERT INTO tasks (name, completed) VALUES (%s, %s)",
+        (task_name, False),
+    )
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
