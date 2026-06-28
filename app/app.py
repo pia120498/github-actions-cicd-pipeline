@@ -1,15 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return """
-    <h1>🚀 DevOps Task Manager</h1>
-    <p>CI/CD Pipeline Project</p>
-    <p>Application is running successfully!</p>
-    """
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
