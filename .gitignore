@@ -1,0 +1,61 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Environment Variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage Reports
+.coverage
+htmlcov/
+
+# Test Cache
+.pytest_cache/
+
+# Python Packaging
+*.egg-info/
+dist/
+build/
+
+# MyPy
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
+
+# Docker
+*.tar
+
+# Kubernetes
+*.kubeconfig
+
+# Terraform (future-proofing)
+*.tfstate
+*.tfstate.backup
+
+# Local database files
+*.db
