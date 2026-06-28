@@ -1,4 +1,5 @@
 services:
+
   mysql:
     image: mysql:8.4
     container_name: mysql-dev
@@ -15,6 +16,23 @@ services:
       - ./app/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
     restart: unless-stopped
+
+  flask-app:
+    build: .
+
+    container_name: flask-app
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: taskdb
+
+    depends_on:
+      - mysql
 
 volumes:
   mysql-data:
