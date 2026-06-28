@@ -1,16 +1,27 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
 <body>
+
     <h1>🚀 DevOps Task Manager</h1>
 
     <h3>CI/CD Pipeline Demonstration</h3>
 
     <hr>
 
-    <p>
-        This application demonstrates a complete DevOps workflow using
-        Flask, Docker, Docker Compose, GitHub Actions and Kubernetes.
-    </p>
+    <h2>Current Tasks</h2>
 
-    <p>
-        ✅ Application Status: Running
-    </p>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {% if task.completed %}
+                    ✅ {{ task.name }}
+                {% else %}
+                    ⬜ {{ task.name }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
 </body>
