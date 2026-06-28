@@ -1,18 +1,30 @@
 """
 task_service.py
 
-Provides task data for the application.
-
-Currently returns hardcoded sample tasks.
-Later, this module will fetch tasks from MySQL.
+Provides task-related operations.
 """
+
+from db import get_connection
 
 
 def get_tasks():
-    return [
-        {"name": "Configure GitHub Actions", "completed": True},
-        
-        {"name": "Deploy Docker Container", "completed": False},
-        
-        {"name": "Deploy to Kubernetes", "completed": False},
-    ]
+    connection = get_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute(
+        """
+        SELECT
+            id,
+            name,
+            completed
+        FROM tasks
+        ORDER BY id;
+        """
+    )
+
+    tasks = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return tasks
