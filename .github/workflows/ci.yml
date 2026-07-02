@@ -39,10 +39,12 @@ jobs:
       - name: Show Running Containers
         run: docker ps
 
+      - name: Show Docker Compose Status
+        run: docker compose ps
+
       - name: Verify Application
-        run: curl --fail http://localhost:5000
+        run: curl --fail http://localhost:5000/health
 
       - name: Stop Containers
         if: always()
         run: docker compose down
-        

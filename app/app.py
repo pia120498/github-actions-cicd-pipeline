@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-
+from flask import jsonify
 from task_service import get_tasks, add_task
 
 app = Flask(__name__)
@@ -11,6 +11,13 @@ def home():
     return render_template("index.html", tasks=tasks)
 
 
+# @app.route("/health")
+# def health():
+#     return {
+#         "status": "healthy"
+#     }, 200
+
+
 @app.route("/add", methods=["POST"])
 def create_task():
     task_name = request.form["task"]
@@ -19,6 +26,12 @@ def create_task():
         add_task(task_name)
 
     return redirect("/")
+
+@app.route("/health")
+def health():
+    return jsonify(
+        status="UP"
+    ), 200
 
 
 if __name__ == "__main__":
